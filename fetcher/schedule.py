@@ -2,21 +2,21 @@ import requests
 
 from config import BASE
 
-async def fetch_todays_schedule():
-    data = requests.get(f"{BASE}/schedule?sportId=1&date=2026-05-13").json() #UPDATE WHEN AVAILABLE
+async def fetch_todays_schedule(date):
+    data = requests.get(f"{BASE}/schedule?sportId=1&date={date}").json() #DATE FORMAT: YYYY-MM-DD
     all_games = []
 
     for games in data["dates"][0]["games"]:
        all_games.append({
             "game_id": games["gamePk"],
-            # "game_date": games["gameDate"],
+            "game_date": games["gameDate"],
             # "season": games["season"],
             "home_team": games["teams"]["home"]["team"]["name"],
             "away_team": games["teams"]["away"]["team"]["name"],
             # "home_team_id": games["teams"]["home"]["team"]["id"],
             # "away_team_id": games["teams"]["away"]["team"]["id"],
             # "game_status": games["status"]["detailedState"],
-            # "venue": games["venue"]["name"]
+            "venue": games["venue"]["name"]
         })
     return all_games
 
@@ -56,4 +56,4 @@ async def extract_probable_pitchers(date):
 # if __name__ == "__main__":
 #     import asyncio
 #     print(asyncio.run(fetch_team_schedule(147, 2026)))
-    # print(asyncio.run(fetch_todays_schedule()))
+    # print(asyncio.run(fetch_todays_schedule("2026-05-13")))
