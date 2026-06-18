@@ -56,4 +56,4 @@ async def extract_probable_pitchers(date):
 # if __name__ == "__main__":
 #     import asyncio
 #     print(asyncio.run(fetch_team_schedule(147, 2026)))
-    # print(asyncio.run(fetch_todays_schedule("2026-05-13")))
+    #  print(asyncio.run(fetch_todays_schedule("2026-06-17")))
